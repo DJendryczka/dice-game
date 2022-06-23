@@ -13,15 +13,32 @@ const resetBtn = document.getElementById('resetBtn');
 rollBtn.addEventListener('click', function () {
   const randomNum = Math.floor(Math.random() * 6) + 1;
   if (player1Turn) {
+    player1Score += randomNum;
+    player1Scoreboard.textContent = player1Score;
     player1Dice.textContent = randomNum;
     player1Dice.classList.remove('active');
     player2Dice.classList.add('active');
     message.textContent = 'Player 2 Turn';
   } else {
+    player2Score += randomNum;
+    player2Scoreboard.textContent = player2Score;
     player2Dice.textContent = randomNum;
     player1Dice.classList.add('active');
     player2Dice.classList.remove('active');
     message.textContent = 'Player 1 Turn';
   }
+  if(player1Score >= 20){
+    message.textContent = 'Player 1 has won';
+    reset()
+  }else if(player2Score >= 20){
+    message.textContent = 'Player 2 has won';
+    reset()
+  }
   player1Turn = !player1Turn;
 });
+function reset(){
+    if(player1Score >= 20 || player2Score >= 20 ){
+        rollBtn.style.display = "none"
+    resetBtn.style.display ='block'
+    }
+}
