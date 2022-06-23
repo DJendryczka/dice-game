@@ -10,17 +10,18 @@ const player2Scoreboard = document.getElementById('player2Scoreboard');
 const rollBtn = document.getElementById('rollBtn');
 const resetBtn = document.getElementById('resetBtn');
 
-rollBtn.addEventListener('click', function(){
-    const randomNum = Math.floor(Math.random() * 6) +1
-    if (player1Turn){
-        player1Dice.textContent = randomNum;
-            player1Dice.classList.remove('active')
-            player2Dice.classList.add('active')
-    } else {
-        player2Dice.textContent = randomNum
-        player1Dice.classList.add('active')
-        player2Dice.classList.remove('active')
-        console.log('Player 2 ' + randomNum)
-    }
-    player1Turn = !player1Turn
-})
+rollBtn.addEventListener('click', function () {
+  const randomNum = Math.floor(Math.random() * 6) + 1;
+  if (player1Turn) {
+    player1Dice.textContent = randomNum;
+    player1Dice.classList.remove('active');
+    player2Dice.classList.add('active');
+    message.textContent = 'Player 2 Turn';
+  } else {
+    player2Dice.textContent = randomNum;
+    player1Dice.classList.add('active');
+    player2Dice.classList.remove('active');
+    message.textContent = 'Player 1 Turn';
+  }
+  player1Turn = !player1Turn;
+});
