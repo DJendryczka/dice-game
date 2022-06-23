@@ -13,10 +13,13 @@ const resetBtn = document.getElementById('resetBtn');
 rollBtn.addEventListener('click', function(){
     const randomNum = Math.floor(Math.random() * 6) +1
     if (player1Turn){
-        player1Dice.textContent = randomNum
-        console.log(`Player 1 ${randomNum}`)
+        player1Dice.textContent = randomNum;
+            player1Dice.classList.remove('active')
+            player2Dice.classList.add('active')
     } else {
         player2Dice.textContent = randomNum
+        player1Dice.classList.add('active')
+        player2Dice.classList.remove('active')
         console.log('Player 2 ' + randomNum)
     }
     player1Turn = !player1Turn
