@@ -13,6 +13,7 @@ const resetBtn = document.getElementById('resetBtn');
 const addPlayer1 = document.getElementById('addPlayer1');
 const addPlayer2 = document.getElementById('addPlayer2');
 const inputEl = document.getElementById('inputEl');
+const horse = document.getElementById('myAudio');
 // Function getNames
 // get first name
 // get secound name
@@ -63,6 +64,8 @@ rollBtn.addEventListener('click', function () {
   } else if (player2Score >= 20) {
     message.textContent = `${player2} has won`;
     reset();
+  }else if(player1Score === 4 || player2Score === 2){
+    horse.play()
   }
   player1Turn = !player1Turn;
 });
