@@ -12,7 +12,7 @@ const rollBtn = document.getElementById('rollBtn');
 const resetBtn = document.getElementById('resetBtn');
 const addPlayer1 = document.getElementById('addPlayer1');
 const addPlayer2 = document.getElementById('addPlayer2');
-const inputEl = document.getElementById('inputEl')
+const inputEl = document.getElementById('inputEl');
 // Function getNames
 // get first name
 // get secound name
@@ -20,75 +20,72 @@ const inputEl = document.getElementById('inputEl')
 // display valid name when playing
 // hide ather buttons before starting game
 addPlayer1.addEventListener('click', function () {
-  getNames();
-});
-function getNames() {
   player1 = document.getElementById('inputEl').value;
   document.getElementById('inputEl').value = '';
   addPlayer2.style.display = 'block';
   addPlayer1.style.display = 'none';
   console.log(player1);
-  addPlayer2.addEventListener('click', function () {
-    getNames();
-  });
-  function getNames() {
+});
+addPlayer2.addEventListener('click', function () {
     player2 = document.getElementById('inputEl').value;
     document.getElementById('inputEl').value = '';
     addPlayer2.style.display = 'none';
     inputEl.style.display = 'none';
     rollBtn.style.display = 'block';
     console.log(player2);
-    playGame();
+  });
+
+rollBtn.addEventListener('click', function () {
+  const randomNum = Math.floor(Math.random() * 6) + 1;
+  if (player1Turn) {
+    player1Score += randomNum;
+    player1Scoreboard.textContent = player1Score;
+    player1Dice.textContent = randomNum;
+    player1Dice.classList.remove('active');
+    player2Dice.classList.add('active');
+    message.textContent = `${player2}'s Turn`;
+  } else {
+    player2Score += randomNum;
+    player2Scoreboard.textContent = player2Score;
+    player2Dice.textContent = randomNum;
+    player1Dice.classList.add('active');
+    player2Dice.classList.remove('active');
+    message.textContent = `${player1}'s Turn`;
   }
-  function playGame() {
-    rollBtn.addEventListener('click', function () {
-      const randomNum = Math.floor(Math.random() * 6) + 1;
-      if (player1Turn) {
-        player1Score += randomNum;
-        player1Scoreboard.textContent = player1Score;
-        player1Dice.textContent = randomNum;
-        player1Dice.classList.remove('active');
-        player2Dice.classList.add('active');
-        message.textContent = `${player2}'s Turn`;
-      } else {
-        player2Score += randomNum;
-        player2Scoreboard.textContent = player2Score;
-        player2Dice.textContent = randomNum;
-        player1Dice.classList.add('active');
-        player2Dice.classList.remove('active');
-        message.textContent = `${player1}'s Turn`;
-      }
-      if (player1Score >= 20) {
-        message.textContent = `${player1} has won`;
-        reset();
-      } else if (player2Score >= 20) {
-        message.textContent = `${player2} has won`;
-        reset();
-      }
-      player1Turn = !player1Turn;
-    });
-    function reset() {
-      rollBtn.style.display = 'none';
-      resetBtn.style.display = 'block';
-    }
-    resetBtn.addEventListener('click', function () {
-      resetGame();
-    });
-    function resetGame() {
-      message.textContent = 'Player 1 Turn';
-      player1Scoreboard.textContent = 0;
-      player2Scoreboard.textContent = 0;
-      player1Dice.textContent = '-';
-      player2Dice.textContent = '-';
-      player1Score = 0;
-      player2Score = 0;
-      player1Turn = true;
-      resetBtn.style.display = 'none';
-      rollBtn.style.display = 'none';
-      addPlayer1.style.display = 'block';
-      inputEl.style.display = 'block'
-      player2Dice.classList.remove('active');
-      player1Dice.classList.add('active');
-    }
+  console.log(player1Score);
+  console.log(player2Score);
+  if (player1Score >= 20) {
+    message.textContent = `${player1} has won`;
+    reset();
+  } else if (player2Score >= 20) {
+    message.textContent = `${player2} has won`;
+    reset();
   }
+  player1Turn = !player1Turn;
+});
+function reset() {
+  rollBtn.style.display = 'none';
+  resetBtn.style.display = 'block';
+}
+resetBtn.addEventListener('click', function () {
+  resetGame();
+});
+function resetGame() {
+  message.textContent = 'Player 1 Turn';
+  player1Scoreboard.textContent = 0;
+  player2Scoreboard.textContent = 0;
+  player1Dice.textContent = '-';
+  player2Dice.textContent = '-';
+  player1Score = 0;
+  player2Score = 0;
+  player1 = '';
+  player2 = '';
+  player1Turn = true;
+  resetBtn.style.display = 'none';
+  rollBtn.style.display = 'none';
+  addPlayer1.style.display = 'block';
+  inputEl.style.display = 'block';
+  player2Dice.classList.remove('active');
+  player1Dice.classList.add('active');
+  console.log(player1Score, player2Score);
 }
