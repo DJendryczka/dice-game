@@ -90,3 +90,11 @@ input{
     margin-top: 10px;
     text-align: center;
 }
+@media screen and ( max-width: 600px){
+    .container{
+        width: 310px;
+    }
+    input{
+        width: 300px;
+    }
+}
