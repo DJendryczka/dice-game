@@ -24,6 +24,7 @@ addPlayer1.addEventListener('click', function () {
   document.getElementById('inputEl').value = '';
   addPlayer2.style.display = 'block';
   addPlayer1.style.display = 'none';
+  message.textContent = `Player 2 enter your name`
   console.log(player1);
 });
 addPlayer2.addEventListener('click', function () {
@@ -32,6 +33,8 @@ addPlayer2.addEventListener('click', function () {
     addPlayer2.style.display = 'none';
     inputEl.style.display = 'none';
     rollBtn.style.display = 'block';
+    message.textContent = `${player1}'s Turn`
+    //setInterval(function(){message.textContent = `${player1}'s Turn`}, 3000)
     console.log(player2);
   });
 
@@ -71,7 +74,7 @@ resetBtn.addEventListener('click', function () {
   resetGame();
 });
 function resetGame() {
-  message.textContent = 'Player 1 Turn';
+  message.textContent = 'Players enter your name';
   player1Scoreboard.textContent = 0;
   player2Scoreboard.textContent = 0;
   player1Dice.textContent = '-';
